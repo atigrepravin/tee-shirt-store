@@ -1,10 +1,18 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./layout";
+import Home from "./pages/home";
+import Cart from "./pages/cart";
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline text-red-700">Hello World!</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

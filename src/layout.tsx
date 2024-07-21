@@ -1,11 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Header from "./components/common/header";
 
 export const Layout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <div className="container mx-auto my-8">
+        <Outlet />
+      </div>
     </>
   );
 };

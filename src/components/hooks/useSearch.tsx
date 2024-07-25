@@ -10,8 +10,8 @@ function useSearch<DataType>(
   useEffect(() => {
     const filteredData: DataType[] = data.filter((item: DataType) => {
       return searchParams.some((param) => {
-        const text = item[param as keyof DataType] as string;
-        return text.toLowerCase().includes(query.toLocaleLowerCase());
+        const value = item[param as keyof DataType] as string;
+        return value.toLowerCase().includes(query.toLocaleLowerCase());
       });
     });
     setResult(filteredData);

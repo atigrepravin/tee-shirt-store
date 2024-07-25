@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-const useSearch = (query: string, searchParams: string[], data: any) => {
+function useSearch<DataType>(
+  query: string,
+  searchParams: string[],
+  data: DataType
+): DataType {
   const [result, setResult] = useState([]);
 
   useEffect(() => {
@@ -16,6 +20,6 @@ const useSearch = (query: string, searchParams: string[], data: any) => {
   }, [query, data]);
 
   return result;
-};
+}
 
 export default useSearch;

@@ -24,7 +24,9 @@ const Home = () => {
     <div>
       <div className="max-w-md mx-auto mb-8">
         <Search
-          onChange={(e: any) => setSearchQuery(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSearchQuery(e.target.value)
+          }
           value={searchQuery}
         />
       </div>

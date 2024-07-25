@@ -11,10 +11,10 @@ export interface Product {
 }
 export const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm bg-white border border-gray-200 hover:shadow-md">
       <a href="#">
         <img
-          className="rounded-t-lg object-cover h-80 w-full"
+          className="rounded-t-lg object-cover h-60 w-full"
           src={product.imageURL}
           alt={product.name}
         />

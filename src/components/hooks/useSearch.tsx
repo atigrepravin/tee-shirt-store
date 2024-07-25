@@ -3,17 +3,15 @@ import { useEffect, useState } from "react";
 function useSearch<DataType>(
   query: string,
   searchParams: string[],
-  data: DataType
-): DataType {
-  const [result, setResult] = useState([]);
+  data: DataType[]
+): DataType[] {
+  const [result, setResult] = useState<DataType[]>([]);
 
   useEffect(() => {
-    const filteredData = data.filter((item: any) => {
+    const filteredData: DataType[] = data.filter((item: DataType) => {
       return searchParams.some((param) => {
-        return item[param]
-          .toString()
-          .toLowerCase()
-          .includes(query.toLocaleLowerCase());
+        const text = item[param as keyof DataType] as string;
+        return text.toLowerCase().includes(query.toLocaleLowerCase());
       });
     });
     setResult(filteredData);

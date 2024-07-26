@@ -5,35 +5,26 @@ import {
 } from "../../constants/product";
 import { Checkbox } from "../form/checkbox";
 
-export const ProductFilter = () => {
+export const ProductFilter = ({
+  filterAttributes,
+  handleFilterChange,
+}: {
+  filterAttributes: any[];
+  handleFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
   const [formData, setFormData] = useState(PRODUCT_FILTER_DEFAULT_FORM_VALUE);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const key = e.target.dataset.groupName;
-    if (!key) return;
-    const { value, checked } = e.target;
-    let attributeValues: string[] = [];
-    if (checked) {
-      attributeValues = [...formData[key as keyof object], value];
-    } else {
-      attributeValues = [...formData[key as keyof object]].filter(
-        (item) => item !== value
-      );
-    }
-    setFormData({ ...formData, [key]: attributeValues });
-  };
 
   return (
     <div className="border p-8">
-      {PRODUCT_FILTER_ATTRIBUTES.map((attribute) => {
+      {filterAttributes.map((attribute) => {
         return (
           <div className="mb-6 last:mb-0">
             <div className="font-semibold mb-2">{attribute.displayName}</div>
             <div className="flex flex-col gap-1">
-              {attribute.options.map((option) => {
+              {attribute.options.map((option: any) => {
                 return (
                   <Checkbox
-                    onChange={handleChange}
+                    onChange={handleFilterChange}
                     label={option.label}
                     value={option.value}
                     groupName={attribute.name}

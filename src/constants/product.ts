@@ -35,3 +35,6 @@ export const PRODUCT_FILTER_ATTRIBUTES = [
     ],
   },
 ];
+
+export const PRODUCT_FILTER_DEFAULT_FORM_VALUE =
+  PRODUCT_FILTER_ATTRIBUTES.reduce((a, b) => ({ ...a, [b.name]: [] }), {});

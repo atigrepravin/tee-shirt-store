@@ -1,8 +1,3 @@
-import { useState } from "react";
-import {
-  PRODUCT_FILTER_ATTRIBUTES,
-  PRODUCT_FILTER_DEFAULT_FORM_VALUE,
-} from "../../constants/product";
 import { Checkbox } from "../form/checkbox";
 
 export const ProductFilter = ({
@@ -12,8 +7,6 @@ export const ProductFilter = ({
   filterAttributes: any[];
   handleFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
-  const [formData, setFormData] = useState(PRODUCT_FILTER_DEFAULT_FORM_VALUE);
-
   return (
     <div className="border p-8">
       {filterAttributes.map((attribute) => {

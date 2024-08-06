@@ -25,15 +25,15 @@ export const PRODUCT_FILTER_ATTRIBUTES = [
       { label: "Basic", value: "basic" },
     ],
   },
-  // {
-  //   name: "priceRange",
-  //   displayName: "Price Range",
-  //   options: [
-  //     { label: "Under 250", value: "0-250" },
-  //     { label: "₹250 to 450", value: "250-450" },
-  //     { label: "₹450 and above", value: "450-" },
-  //   ],
-  // },
+  {
+    name: "priceRange",
+    displayName: "Price Range",
+    options: [
+      { label: "Under 250", value: "0-250" },
+      { label: "₹250 to 450", value: "250-450" },
+      { label: "₹450 and above", value: "450" },
+    ],
+  },
 ];
 
 export const PRODUCT_FILTER_DEFAULT_FORM_VALUE =

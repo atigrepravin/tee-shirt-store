@@ -3,14 +3,16 @@ export const Checkbox = ({
   value,
   onChange,
   groupName,
+  style,
 }: {
   label: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   groupName?: string;
+  style?: string;
 }) => {
   return (
-    <label className="flex">
+    <label className={`flex cursor-pointer ${style}`}>
       <input
         onChange={onChange}
         data-group-name={groupName}

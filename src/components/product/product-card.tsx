@@ -1,14 +1,5 @@
-export interface Product {
-  id: number;
-  imageURL: string;
-  name: string;
-  type: string;
-  price: number;
-  currency: string;
-  color: string;
-  gender: string;
-  quantity: number;
-}
+import { Product } from "../../types";
+
 export const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className="max-w-sm bg-white border border-gray-200 hover:shadow-md">

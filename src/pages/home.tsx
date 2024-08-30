@@ -10,6 +10,7 @@ import {
   PRODUCT_FILTER_DEFAULT_FORM_VALUE,
 } from "../constants/product";
 import useFilter from "../components/hooks/useFilter";
+import useRangeFilter from "../components/hooks/useRangeFilter";
 
 const Home = () => {
   const [products, setProducts] = useState<Product[] | []>([]);
@@ -17,10 +18,15 @@ const Home = () => {
   const [formData, setFormData] = useState<any>(
     PRODUCT_FILTER_DEFAULT_FORM_VALUE
   );
+  const [selectedPriceRanges, setSelectedPriceRanges] = useState<any[]>([]);
 
   const searchParams = ["name", "type", "color"];
   const searchedProducts = useSearch(searchQuery, searchParams, products);
-  const filteredProducts = useFilter(formData, searchedProducts);
+  const typeFilteredProducts = useFilter(formData, searchedProducts);
+  const filteredProducts = useRangeFilter(
+    selectedPriceRanges,
+    typeFilteredProducts as Product[]
+  );
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -45,11 +51,24 @@ const Home = () => {
     setFormData({ ...formData, [key]: attributeValues });
   };
 
+  const handlePriceRangeChange = (isChecked: boolean, option: any) => {
+    let newSelectedPriceRanges;
+    if (isChecked) {
+      newSelectedPriceRanges = [...selectedPriceRanges, option];
+    } else {
+      newSelectedPriceRanges = selectedPriceRanges.filter(
+        (item) => item.label !== option.label
+      );
+    }
+    setSelectedPriceRanges(newSelectedPriceRanges);
+  };
+
   return (
     <div className="flex gap-8">
       <div className="w-80 mt-20">
         <ProductFilter
           handleFilterChange={handleFilterChange}
+          handlePriceRangeChange={handlePriceRangeChange}
           filterAttributes={PRODUCT_FILTER_ATTRIBUTES}
         />
       </div>

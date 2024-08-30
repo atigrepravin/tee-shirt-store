@@ -26,12 +26,13 @@ export const PRODUCT_FILTER_ATTRIBUTES = [
     ],
   },
   {
-    name: "priceRange",
+    name: "price",
     displayName: "Price Range",
+    filterType: "range",
     options: [
-      { label: "Under 250", value: "0-250" },
-      { label: "₹250 to 450", value: "250-450" },
-      { label: "₹450 and above", value: "450" },
+      { label: "Under 250", min: 0, max: 250 },
+      { label: "₹250 to 450", min: 250, max: 450 },
+      { label: "₹450 and above", min: 450, max: Infinity },
     ],
   },
 ];

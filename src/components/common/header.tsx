@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Cart from "../icons/cart";
+import CartIcon from "../icons/cart";
 import { useContext } from "react";
 import { CartContext } from "../../context/cart";
 
@@ -26,7 +26,7 @@ function Header() {
                   </span>
                 </span>
               )}
-              <Cart />
+              <CartIcon />
             </div>
           </Link>
         </div>

@@ -1,65 +1,44 @@
-import { QuantitySelector } from "../components/common/quantity-selector";
+import { useContext } from "react";
+import { CartContext } from "../context/cart";
+import { CartItemCard } from "../components/cart/cart-item-card";
+import { CartItem } from "../types";
 
-const product = {
-  id: 1,
-  imageURL:
-    "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/black-polo-men.png",
-  name: "Black Polo",
-  type: "Polo",
-  price: 250,
-  currency: "INR",
-  color: "Black",
-  gender: "Men",
-  quantity: 3,
-};
 const Cart = () => {
+  const cartContext = useContext(CartContext);
+  if (!cartContext) return <div>Loading...</div>;
+  const { cart, dispatch } = cartContext;
+
+  const handleRemoveCartItem = (productId: number) => {
+    if (cartContext) {
+      dispatch({
+        type: "REMOVE_FROM_CART",
+        productId,
+      });
+    }
+  };
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-8">Shopping Cart</h2>
       <div className="flex gap-20">
         <div className="grow">
-          <div className="border-b first:border-t justify-between flex p-6 gap-6">
-            <div className="flex">
-              <a href="#" className="h-24">
-                <img
-                  className="rounded-t-lg object-cover h-full w-full"
-                  src={product.imageURL}
-                  alt={product.name}
-                />
-              </a>
-              <div className="mx-6">
-                <a href="#">
-                  <h5 className="text-xl font-bold tracking-tight text-gray-900">
-                    {product.name}
-                  </h5>
-                </a>
-                <div className="text-sm">
-                  {product.color} | {product.gender} | {product.type}
-                </div>
-                <div className="text-base font-semibold my-2">
-                  ₹ {product.price}
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-wrap content-center mx-8">
-              <QuantitySelector />
-            </div>
-            <div className="flex content-center flex-wrap">
-              <button className="items-center bg-gray-100 hover:bg-gray-200 border border-gray-300 h-10 px-6 py-2 rounded-lg  focus:outline-none">
-                Remove
-              </button>
-            </div>
-          </div>
+          {!!cart.items &&
+            cart.items.map((cartItem: CartItem) => (
+              <CartItemCard
+                key={cartItem.id}
+                cartItem={cartItem}
+                handleRemoveCartItem={handleRemoveCartItem}
+              />
+            ))}
         </div>
         <div className="w-80 border p-8 top-32">
           <h3 className="text-lg font-semibold m-1">Order Summary</h3>
           <div className="flex justify-between my-3">
             <div>Items:</div>
-            <div>4</div>
+            <div>{cart.totalItems}</div>
           </div>
           <div className="flex border-t py-3 justify-between font-semibold">
             <div>Total:</div>
-            <div>2300</div>
+            <div>₹ {cart.totalPrice}</div>
           </div>
           <a
             href="#"

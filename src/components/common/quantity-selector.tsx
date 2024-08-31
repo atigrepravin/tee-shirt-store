@@ -1,9 +1,27 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import MinusIcon from "../icons/minus";
 import PlusIcon from "../icons/plus";
+import { CartContext } from "../../context/cart";
 
-export const QuantitySelector = () => {
-  const [quantity, setQuantity] = useState(0);
+export const QuantitySelector = ({
+  productId,
+  productQuanity,
+}: {
+  productId: number;
+  productQuanity: number;
+}) => {
+  console.log("test-----productQuanity", productQuanity);
+  const [quantity, setQuantity] = useState(productQuanity);
+  const cartContext = useContext(CartContext);
+
+  useEffect(() => {
+    if (!cartContext) return;
+    cartContext.dispatch({
+      type: "UPDATE_CART_QUANTITY",
+      productId: productId,
+      quantity,
+    });
+  }, [quantity]);
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);

@@ -7,7 +7,10 @@ export const ProductCard = ({ product }: { product: Product }) => {
 
   const handleAddToCart = (product: Product) => {
     if (cartContext) {
-      cartContext.dispatch({ type: "ADD_TO_CART", product });
+      cartContext.dispatch({
+        type: "ADD_TO_CART",
+        product: { ...product, quantity: 1 },
+      });
     }
   };
   return (

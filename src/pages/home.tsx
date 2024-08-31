@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { ProductList } from "../components/product/product-list";
 import { getAllProducts } from "../apis/products";
 import { Search } from "../components/form/search";
-import { Product } from "../components/product/product-card";
 import useSearch from "../components/hooks/useSearch";
 import { ProductFilter } from "../components/product/product-filter";
 import {
   PRODUCT_FILTER_ATTRIBUTES,
   PRODUCT_FILTER_DEFAULT_FORM_VALUE,
-} from "../constants/product";
+} from "../utils/product";
 import useFilter from "../components/hooks/useFilter";
 import useRangeFilter from "../components/hooks/useRangeFilter";
+import { Product } from "../types";
 
 const Home = () => {
   const [products, setProducts] = useState<Product[] | []>([]);

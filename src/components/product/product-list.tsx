@@ -1,4 +1,5 @@
-import { Product, ProductCard } from "./product-card";
+import { Product } from "../../types";
+import { ProductCard } from "./product-card";
 
 export const ProductList = ({ products }: { products: Product[] }) => {
   return (

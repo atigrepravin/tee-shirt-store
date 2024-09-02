@@ -15,36 +15,36 @@ const calculateTotals = (items: CartItem[]) => {
 export const cartReducer = (state: Cart, action: CartAction) => {
   switch (action.type) {
     case "ADD_TO_CART": {
-      let updatedItems;
       const existingItemIndex = state.items.findIndex(
         (item: CartItem) => item.id === action.product.id
       );
+      let updatedItems = [...state.items, action.product];
 
       //if item already exist in cart
       if (existingItemIndex >= 0) {
         updatedItems = [...state.items];
         updatedItems[existingItemIndex] = action.product;
-      } else {
-        //add new item to cart
-        updatedItems = [...state.items, action.product];
       }
 
+      const { totalItems, totalPrice } = calculateTotals(updatedItems);
       return {
         ...state,
         items: updatedItems,
-        totalItems: action.totalItems,
-        totalPrice: action.totalPrice,
+        totalItems,
+        totalPrice,
       };
     }
     case "REMOVE_FROM_CART": {
       const updatedItems = state.items.filter(
         (item) => item.id !== action.productId
       );
+      const { totalItems, totalPrice } = calculateTotals(updatedItems);
+
       return {
         ...state,
         items: updatedItems,
-        totalItems: action.totalItems,
-        totalPrice: action.totalPrice,
+        totalItems,
+        totalPrice,
       };
     }
     case "UPDATE_CART_QUANTITY": {

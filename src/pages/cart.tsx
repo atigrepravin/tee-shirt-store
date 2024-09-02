@@ -1,21 +1,9 @@
-import { useContext } from "react";
-import { CartContext } from "../context/cart";
 import { CartItemCard } from "../components/cart/cart-item-card";
+import { useCart } from "../components/hooks/useCart";
 import { CartItem } from "../types";
 
 const Cart = () => {
-  const cartContext = useContext(CartContext);
-  if (!cartContext) return <div>Loading...</div>;
-  const { cart, dispatch } = cartContext;
-
-  const handleRemoveCartItem = (productId: number) => {
-    if (cartContext) {
-      dispatch({
-        type: "REMOVE_FROM_CART",
-        productId,
-      });
-    }
-  };
+  const { cart, handleRemoveFromCart } = useCart();
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-8">Shopping Cart</h2>
@@ -26,7 +14,7 @@ const Cart = () => {
               <CartItemCard
                 key={cartItem.id}
                 cartItem={cartItem}
-                handleRemoveCartItem={handleRemoveCartItem}
+                handleRemoveFromCart={handleRemoveFromCart}
               />
             ))}
         </div>

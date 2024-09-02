@@ -3,10 +3,10 @@ import { QuantitySelector } from "../common/quantity-selector";
 
 export const CartItemCard = ({
   cartItem,
-  handleRemoveCartItem,
+  handleRemoveFromCart,
 }: {
   cartItem: CartItem;
-  handleRemoveCartItem: (id: number) => void;
+  handleRemoveFromCart: (id: number) => void;
 }) => {
   return (
     <div className="border-b first:border-t justify-between flex p-6 gap-6">
@@ -38,7 +38,7 @@ export const CartItemCard = ({
       </div>
       <div className="flex content-center flex-wrap">
         <button
-          onClick={() => handleRemoveCartItem(cartItem.id)}
+          onClick={() => handleRemoveFromCart(cartItem.id)}
           className="items-center bg-gray-100 hover:bg-gray-200 border border-gray-300 h-10 px-6 py-2 rounded-lg  focus:outline-none"
         >
           Remove

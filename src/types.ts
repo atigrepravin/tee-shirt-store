@@ -21,11 +21,21 @@ export interface Cart {
 }
 
 export type CartAction =
-  | { type: "ADD_TO_CART"; product: Product }
-  | { type: "REMOVE_FROM_CART"; productId: number }
+  | {
+      type: "ADD_TO_CART";
+      product: Product;
+      totalItems: number;
+      totalPrice: number;
+    }
+  | {
+      type: "REMOVE_FROM_CART";
+      productId: number;
+      totalItems: number;
+      totalPrice: number;
+    }
   | { type: "UPDATE_CART_QUANTITY"; productId: number; quantity: number };
 
 export interface CartContextType {
   cart: Cart;
-  dispatch: React.Dispatch<CartAction>;
+  dispatch?: React.Dispatch<CartAction>;
 }

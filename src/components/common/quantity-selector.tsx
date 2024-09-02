@@ -10,22 +10,12 @@ export const QuantitySelector = ({
   productId: number;
   productQuanity: number;
 }) => {
-  console.log("test-----productQuanity", productQuanity);
   const [quantity, setQuantity] = useState(productQuanity);
-  const cartContext = useContext(CartContext);
-
-  useEffect(() => {
-    if (!cartContext) return;
-    cartContext.dispatch({
-      type: "UPDATE_CART_QUANTITY",
-      productId: productId,
-      quantity,
-    });
-  }, [quantity]);
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
   };
+
   const decreaseQuantity = () => {
     if (quantity) {
       setQuantity(quantity - 1);

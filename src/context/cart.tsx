@@ -21,9 +21,9 @@ const loadCartState = (): Cart => {
   return savedCart ? JSON.parse(savedCart) : intialCartState;
 };
 
-export const CartContext = createContext<CartContextType | undefined>(
-  undefined
-);
+export const CartContext = createContext<CartContextType>({
+  cart: intialCartState,
+});
 
 type Props = {
   children: ReactNode;

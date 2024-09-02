@@ -4,6 +4,7 @@ import { CartItem } from "../types";
 
 const Cart = () => {
   const { cart, handleRemoveFromCart } = useCart();
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-8">Shopping Cart</h2>

@@ -45,7 +45,20 @@ export const useCart = () => {
       });
     }
   };
-  const handleUpdateCartQuanity = () => {};
+  const handleUpdateCartQuanity = (productId: number, quantity: number) => {
+    if (cartContext.dispatch) {
+      cartContext.dispatch({
+        type: "UPDATE_CART_QUANTITY",
+        productId,
+        quantity,
+      });
+    }
+  };
 
-  return { cart, handleAddToCart, handleRemoveFromCart };
+  return {
+    cart,
+    handleAddToCart,
+    handleRemoveFromCart,
+    handleUpdateCartQuanity,
+  };
 };

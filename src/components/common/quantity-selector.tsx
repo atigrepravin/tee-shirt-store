@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import MinusIcon from "../icons/minus";
 import PlusIcon from "../icons/plus";
-import { CartContext } from "../../context/cart";
+import { useCart } from "../hooks/useCart";
 
 export const QuantitySelector = ({
   productId,
@@ -12,13 +12,21 @@ export const QuantitySelector = ({
 }) => {
   const [quantity, setQuantity] = useState(productQuanity);
 
+  const { handleUpdateCartQuanity, handleRemoveFromCart } = useCart();
+
   const increaseQuantity = () => {
-    setQuantity(quantity + 1);
+    let updatedQuantity = quantity + 1;
+    setQuantity(updatedQuantity);
+    handleUpdateCartQuanity(productId, updatedQuantity);
   };
 
   const decreaseQuantity = () => {
-    if (quantity) {
-      setQuantity(quantity - 1);
+    if (quantity > 1) {
+      let updatedQuantity = quantity - 1;
+      setQuantity(updatedQuantity);
+      handleUpdateCartQuanity(productId, updatedQuantity);
+    } else {
+      handleRemoveFromCart(productId);
     }
   };
 

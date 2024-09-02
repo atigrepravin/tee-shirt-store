@@ -1,5 +1,17 @@
 import { Cart, CartAction, CartItem } from "../types";
 
+const calculateTotals = (items: CartItem[]) => {
+  const totalItems = items.reduce(
+    (total, item) => (total = total + item.quantity),
+    0
+  );
+  const totalPrice = items.reduce(
+    (total, item) => (total = total + item.quantity * item.price),
+    0
+  );
+  return { totalItems, totalPrice };
+};
+
 export const cartReducer = (state: Cart, action: CartAction) => {
   switch (action.type) {
     case "ADD_TO_CART": {
@@ -35,29 +47,23 @@ export const cartReducer = (state: Cart, action: CartAction) => {
         totalPrice: action.totalPrice,
       };
     }
-    // case "UPDATE_CART_QUANTITY": {
-    //   const itemIndex = state.items.findIndex(
-    //     (item: CartItem) => item.id === action.productId
-    //   );
-    //   if (itemIndex !== -1) {
-    //     const updatedItems = [...state.items];
-    //     const selectedItem = updatedItems[itemIndex];
-    //     //reset
-    //     let updatedTotalItems = state.totalItems - selectedItem.quantity;
-    //     updatedTotalItems = updatedTotalItems + action.quantity;
-    //     let updatedTotalPrice =
-    //       state.totalPrice - selectedItem.quantity * selectedItem.price;
-    //     updatedTotalPrice =
-    //       updatedTotalPrice + action.quantity * selectedItem.price;
-    //     return {
-    //       ...state,
-    //       items: updatedItems,
-    //       totalItems: updatedTotalItems,
-    //       totalPrice: updatedTotalPrice,
-    //     };
-    //   }
-    //   return state;
-    // }
+    case "UPDATE_CART_QUANTITY": {
+      const itemIndex = state.items.findIndex(
+        (item: CartItem) => item.id === action.productId
+      );
+      if (itemIndex !== -1) {
+        const updatedItems = [...state.items];
+        updatedItems[itemIndex].quantity = action.quantity;
+        const { totalItems, totalPrice } = calculateTotals(updatedItems);
+        return {
+          ...state,
+          items: updatedItems,
+          totalItems,
+          totalPrice,
+        };
+      }
+      return state;
+    }
     default:
       return state;
   }

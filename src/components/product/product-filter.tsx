@@ -10,7 +10,7 @@ export const ProductFilter = ({
   handlePriceRangeChange: (isChecked: boolean, option: any) => void;
 }) => {
   return (
-    <div className="border p-8 sticky top-32">
+    <div className="border p-8 sticky top-28">
       {filterAttributes.map((attribute) => {
         return (
           <div className="mb-6 last:mb-0" key={attribute.name}>

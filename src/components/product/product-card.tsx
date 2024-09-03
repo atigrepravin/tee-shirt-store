@@ -1,15 +1,9 @@
-import { useContext } from "react";
 import { Product } from "../../types";
-import { CartContext } from "../../context/cart";
+import { useCart } from "../hooks/useCart";
 
 export const ProductCard = ({ product }: { product: Product }) => {
-  const cartContext = useContext(CartContext);
+  const { handleAddToCart } = useCart();
 
-  const handleAddToCart = (product: Product) => {
-    if (cartContext) {
-      cartContext.dispatch({ type: "ADD_TO_CART", product });
-    }
-  };
   return (
     <div className="max-w-sm bg-white border border-gray-200 hover:shadow-md">
       <a href="#">

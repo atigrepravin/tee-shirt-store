@@ -1,4 +1,4 @@
-import { SearchIcon } from "../icons/search-icon";
+import { SearchIcon } from "../icons/search";
 
 export const Search = ({ onChange, value }: any) => {
   return (

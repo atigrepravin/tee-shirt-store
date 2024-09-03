@@ -10,6 +10,7 @@ export interface Product {
   color: string;
   gender: string;
   quantity: number;
+  stock: number;
 }
 
 export interface CartItem extends Product {}
@@ -18,6 +19,7 @@ export interface Cart {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
+  errorMessage?: string;
 }
 
 export type CartAction =

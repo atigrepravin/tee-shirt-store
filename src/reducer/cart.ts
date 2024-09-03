@@ -19,19 +19,29 @@ export const cartReducer = (state: Cart, action: CartAction) => {
         (item: CartItem) => item.id === action.product.id
       );
       let updatedItems = [...state.items, action.product];
+      let newQuantity = action.product.quantity;
 
       //if item already exist in cart
       if (existingItemIndex >= 0) {
         updatedItems = [...state.items];
         updatedItems[existingItemIndex] = action.product;
+        newQuantity = action.product.quantity;
       }
 
+      //handle stock limitation
+      if (newQuantity > action.product.stock) {
+        return {
+          ...state,
+          errorMessage: `Cannot add more than ${action.product.stock} units of ${action.product.name} to the cart.`,
+        };
+      }
       const { totalItems, totalPrice } = calculateTotals(updatedItems);
       return {
         ...state,
         items: updatedItems,
         totalItems,
         totalPrice,
+        errorMessage: "",
       };
     }
     case "REMOVE_FROM_CART": {
@@ -45,6 +55,7 @@ export const cartReducer = (state: Cart, action: CartAction) => {
         items: updatedItems,
         totalItems,
         totalPrice,
+        errorMessage: "",
       };
     }
     case "UPDATE_CART_QUANTITY": {
@@ -60,6 +71,7 @@ export const cartReducer = (state: Cart, action: CartAction) => {
           items: updatedItems,
           totalItems,
           totalPrice,
+          errorMessage: "",
         };
       }
       return state;

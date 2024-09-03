@@ -2,7 +2,7 @@ import { Product } from "../../types";
 import { useCart } from "../hooks/useCart";
 
 export const ProductCard = ({ product }: { product: Product }) => {
-  const { handleAddToCart } = useCart();
+  const { cart, handleAddToCart } = useCart();
 
   return (
     <div className="max-w-sm bg-white border border-gray-200 hover:shadow-md">

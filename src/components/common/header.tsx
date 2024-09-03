@@ -6,7 +6,6 @@ import { CartContext } from "../../context/cart";
 function Header() {
   const cartContext = useContext(CartContext);
   const cartTotalItems = cartContext?.cart.totalItems || 0;
-  console.log("test-----cartContext?.cart", cartContext?.cart);
 
   return (
     <header className="border-b border-gray-200 sticky z-50 top-0 bg-white">

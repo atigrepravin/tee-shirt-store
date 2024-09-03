@@ -2,21 +2,8 @@ import { Product } from "../../types";
 import { useCart } from "../hooks/useCart";
 
 export const ProductCard = ({ product }: { product: Product }) => {
-  const cartHandler = useCart();
+  const { handleAddToCart } = useCart();
 
-  // const handleAddToCart = (product: Product) => {
-  //   if (cartContext) {
-  //     const { cart, dispatch } = cartContext;
-  //     const existingQuantity = cart.items.find(
-  //       (cartItem) => cartItem.id === product.id
-  //     )?.quantity;
-  //     cartContext.dispatch({
-  //       type: "ADD_TO_CART",
-  //       product,
-  //       quantity: existingQuantity ? existingQuantity + 1 : 1,
-  //     });
-  //   }
-  // };
   return (
     <div className="max-w-sm bg-white border border-gray-200 hover:shadow-md">
       <a href="#">
@@ -38,7 +25,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
         <div className="text-xl font-semibold my-3">₹ {product.price}</div>
         <div
           className="flex justify-center"
-          onClick={() => cartHandler?.handleAddToCart(product)}
+          onClick={() => handleAddToCart(product)}
         >
           <button className="items-center w-full px-3 py-2 font-semibold text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none">
             Add to Cart

@@ -1,10 +1,16 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/cart";
-import { Product } from "../../types";
+import { CartAction, Product } from "../../types";
 
 export const useCart = () => {
   const cartContext = useContext(CartContext);
-  const { cart } = cartContext;
+  const { cart, dispatch } = cartContext;
+
+  const handleDispatch = (action: CartAction) => {
+    if (dispatch) {
+      dispatch(action);
+    }
+  };
 
   const handleAddToCart = (product: Product, quantity: number = 1) => {
     const existingItem = cart.items.find(
@@ -15,29 +21,23 @@ export const useCart = () => {
     if (existingItem) {
       updatedQuanity = existingItem.quantity + quantity;
     }
-    if (cartContext.dispatch) {
-      cartContext.dispatch({
-        type: "ADD_TO_CART",
-        product: { ...product, quantity: updatedQuanity },
-      });
-    }
+    handleDispatch({
+      type: "ADD_TO_CART",
+      product: { ...product, quantity: updatedQuanity },
+    });
   };
   const handleRemoveFromCart = (productId: number) => {
-    if (cartContext.dispatch) {
-      cartContext.dispatch({
-        type: "REMOVE_FROM_CART",
-        productId,
-      });
-    }
+    handleDispatch({
+      type: "REMOVE_FROM_CART",
+      productId,
+    });
   };
   const handleUpdateCartQuanity = (productId: number, quantity: number) => {
-    if (cartContext.dispatch) {
-      cartContext.dispatch({
-        type: "UPDATE_CART_QUANTITY",
-        productId,
-        quantity,
-      });
-    }
+    handleDispatch({
+      type: "UPDATE_CART_QUANTITY",
+      productId,
+      quantity,
+    });
   };
 
   return {

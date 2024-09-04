@@ -4,8 +4,12 @@ import { useCart } from "../hooks/useCart";
 export const ProductCard = ({ product }: { product: Product }) => {
   const { cart, handleAddToCart } = useCart();
 
+  //calculate remaning stock
+  const cartItem = cart.items.find((cartItem) => cartItem.id === product.id);
+  const remaningStock = product.quantity - (cartItem ? cartItem.quantity : 0);
+
   return (
-    <div className="max-w-sm bg-white border border-gray-200 hover:shadow-md">
+    <div className="max-w-sm relative bg-white border border-gray-200 hover:shadow-md">
       <a href="#">
         <img
           className="rounded-t-lg object-cover h-20 md:h-60 w-full"
@@ -25,13 +29,25 @@ export const ProductCard = ({ product }: { product: Product }) => {
         <div className="text-base md:text-xl font-semibold my-2 md:my-3">
           ₹ {product.price}
         </div>
-        <div
-          className="flex justify-center"
-          onClick={() => handleAddToCart(product)}
-        >
-          <button className="items-center w-full px-3 py-2 font-semibold text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none">
-            Add to Cart
-          </button>
+        {remaningStock > 0 && remaningStock < 4 && (
+          <div className="text-sm mb-2 text-red-600 absolute right-6 bottom-16">
+            Only {remaningStock} left in stock
+          </div>
+        )}
+
+        <div className="flex justify-center">
+          {remaningStock > 0 ? (
+            <button
+              onClick={() => handleAddToCart(product)}
+              className="items-center w-full px-3 py-2 font-semibold text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none"
+            >
+              Add to Cart
+            </button>
+          ) : (
+            <div className="items-center w-full px-3 py-2 font-semibold text-center text-white bg-red-400 rounded-lg">
+              Out of stock
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -25,8 +25,8 @@ export const useCart = () => {
       type: "ADD_TO_CART",
       product: {
         ...product,
-        stock: product.quantity,
         quantity: updatedQuanity,
+        stock: product.quantity,
       },
     });
   };

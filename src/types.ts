@@ -10,10 +10,11 @@ export interface Product {
   color: string;
   gender: string;
   quantity: number;
-  stock: number;
 }
 
-export interface CartItem extends Product {}
+export interface CartItem extends Product {
+  stock: number;
+}
 
 export interface Cart {
   items: CartItem[];
@@ -25,15 +26,21 @@ export interface Cart {
 export type CartAction =
   | {
       type: "ADD_TO_CART";
-      product: Product;
+      product: CartItem;
     }
   | {
       type: "REMOVE_FROM_CART";
       productId: number;
     }
-  | { type: "UPDATE_CART_QUANTITY"; productId: number; quantity: number };
+  | {
+      type: "UPDATE_CART_QUANTITY";
+      productId: number;
+      quantity: number;
+    };
 
 export interface CartContextType {
   cart: Cart;
   dispatch?: React.Dispatch<CartAction>;
 }
+
+export type HandleAddToCart = (product: Product, quantity?: number) => void;

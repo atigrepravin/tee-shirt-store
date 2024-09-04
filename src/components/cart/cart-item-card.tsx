@@ -1,5 +1,5 @@
 import { CartItem } from "../../types";
-import { QuantitySelector } from "../common/quantity-selector";
+import { QuantitySelector } from "./quantity-selector";
 
 export const CartItemCard = ({
   cartItem,
@@ -8,6 +8,7 @@ export const CartItemCard = ({
   cartItem: CartItem;
   handleRemoveFromCart: (id: number) => void;
 }) => {
+  const remaningStock = cartItem.stock - cartItem.quantity;
   return (
     <div className="border-b first:border-t justify-between flex p-6 gap-6">
       <div className="flex">
@@ -33,7 +34,8 @@ export const CartItemCard = ({
       <div className="flex flex-wrap content-center mx-8">
         <QuantitySelector
           productId={cartItem.id}
-          productQuanity={cartItem.quantity}
+          cartItemQuantity={cartItem.quantity}
+          remaningStock={remaningStock}
         />
       </div>
       <div className="flex content-center flex-wrap">

@@ -13,7 +13,7 @@ const Cart = () => {
     );
 
   return (
-    <div>
+    <>
       <h2 className="text-2xl font-semibold mb-8">Shopping Cart</h2>
       <div className="flex gap-20">
         <div className="grow">
@@ -44,7 +44,7 @@ const Cart = () => {
           </a>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -65,7 +65,7 @@ const Home = () => {
 
   return (
     <div className="flex gap-8">
-      <div className="w-80 mt-20">
+      <div className="w-80 mt-20 hidden">
         <ProductFilter
           handleFilterChange={handleFilterChange}
           handlePriceRangeChange={handlePriceRangeChange}

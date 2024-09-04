@@ -42,5 +42,3 @@ export interface CartContextType {
   cart: Cart;
   dispatch?: React.Dispatch<CartAction>;
 }
-
-export type HandleAddToCart = (product: Product, quantity?: number) => void;

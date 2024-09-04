@@ -1,4 +1,3 @@
-import { useState } from "react";
 import MinusIcon from "../icons/minus";
 import PlusIcon from "../icons/plus";
 import { useCart } from "../hooks/useCart";
@@ -12,21 +11,13 @@ export const QuantitySelector = ({
   cartItemQuantity: number;
   remaningStock: number;
 }) => {
-  const [warning, setWarning] = useState(false);
+  const { handleUpdateCartQuanity, handleRemoveFromCart } = useCart();
 
-  const { cart, handleUpdateCartQuanity, handleRemoveFromCart } = useCart();
-
-  //calculate remaning stock
-  // const cartItem = cart.items.find((cartItem) => cartItem.id === product.id);
-  // const remaningStock = product.quantity - (cartItem ? cartItem.quantity : 0);
-  console.log("test-------remaningStock", remaningStock);
   const increaseQuantity = () => {
-    if (remaningStock === 0) setWarning(true);
     handleUpdateCartQuanity(productId, cartItemQuantity + 1);
   };
 
   const decreaseQuantity = () => {
-    setWarning(false);
     if (cartItemQuantity > 1) {
       handleUpdateCartQuanity(productId, cartItemQuantity - 1);
     } else {

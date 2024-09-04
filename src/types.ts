@@ -12,24 +12,31 @@ export interface Product {
   quantity: number;
 }
 
-export interface CartItem extends Product {}
+export interface CartItem extends Product {
+  stock: number;
+}
 
 export interface Cart {
   items: CartItem[];
   totalItems: number;
   totalPrice: number;
+  errorMessage?: string;
 }
 
 export type CartAction =
   | {
       type: "ADD_TO_CART";
-      product: Product;
+      product: CartItem;
     }
   | {
       type: "REMOVE_FROM_CART";
       productId: number;
     }
-  | { type: "UPDATE_CART_QUANTITY"; productId: number; quantity: number };
+  | {
+      type: "UPDATE_CART_QUANTITY";
+      productId: number;
+      quantity: number;
+    };
 
 export interface CartContextType {
   cart: Cart;

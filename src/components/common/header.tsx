@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom";
 import CartIcon from "../icons/cart";
-import { useContext } from "react";
-import { CartContext } from "../../context/cart";
+import { useCart } from "../hooks/useCart";
 
 function Header() {
-  const cartContext = useContext(CartContext);
-  const cartTotalItems = cartContext?.cart.totalItems || 0;
+  const { cart } = useCart();
+  const cartTotalItems = cart.totalItems || 0;
 
   return (
     <header className="border-b border-gray-200 sticky z-50 top-0 bg-white">
-      <div className="container mx-auto py-8 flex justify-between">
-        <Link to="/" title="Tee Shirt Store" className="text-3xl font-semibold">
+      <div className="container md:mx-auto py-4 md:py-8 flex justify-between px-6 md:px-0">
+        <Link
+          to="/"
+          title="Tee Shirt Store"
+          className="text-xl md:text-3xl font-semibold"
+        >
           Tee Shirt Store
         </Link>
         <div className="flex items-center">
-          <Link to="/" className="text-lg">
+          <Link to="/" className="text-base md:text-lg">
             Products
           </Link>
           <Link to="/cart" className="ml-6">
@@ -26,7 +29,7 @@ function Header() {
                   </span>
                 </span>
               )}
-              <CartIcon />
+              <CartIcon className="w-7 h-7 md:w-8 md:h-8" />
             </div>
           </Link>
         </div>

@@ -23,7 +23,11 @@ export const useCart = () => {
     }
     handleDispatch({
       type: "ADD_TO_CART",
-      product: { ...product, quantity: updatedQuanity },
+      product: {
+        ...product,
+        quantity: updatedQuanity,
+        stock: product.quantity,
+      },
     });
   };
   const handleRemoveFromCart = (productId: number) => {

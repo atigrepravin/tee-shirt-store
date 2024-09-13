@@ -1,5 +1,5 @@
 import { Product } from "../../types";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../hooks/use-cart";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const { cart, handleAddToCart } = useCart();
@@ -30,12 +30,12 @@ export const ProductCard = ({ product }: { product: Product }) => {
           ₹ {product.price}
         </div>
         {remaningStock > 0 && remaningStock < 4 && (
-          <div className="text-sm mb-2 text-red-600 absolute right-6 bottom-16">
+          <div className="text-xs mb-2 text-red-600 absolute right-0 md:right-6 md:bottom-16 top-12 md:top-auto bg-slate-300 px-2 py-1">
             Only {remaningStock} left in stock
           </div>
         )}
 
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-6 md:mt-0">
           {remaningStock > 0 ? (
             <button
               onClick={() => handleAddToCart(product)}

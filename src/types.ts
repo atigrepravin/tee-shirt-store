@@ -42,3 +42,16 @@ export interface CartContextType {
   cart: Cart;
   dispatch?: React.Dispatch<CartAction>;
 }
+
+export interface FilterFormData {
+  color: string[];
+  gender: string[];
+  type: string[];
+  price: string[];
+}
+
+export interface PriceOption {
+  label: string;
+  min: number;
+  max: number;
+}

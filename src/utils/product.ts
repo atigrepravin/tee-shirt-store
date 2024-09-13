@@ -1,3 +1,5 @@
+import { Product } from "../types";
+
 export const PRODUCT_FILTER_ATTRIBUTES = [
   {
     name: "color",

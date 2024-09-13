@@ -1,3 +1,4 @@
+import { PriceOption } from "../../types";
 import { Checkbox } from "../form/checkbox";
 
 export const ProductFilter = ({
@@ -7,7 +8,7 @@ export const ProductFilter = ({
 }: {
   filterAttributes: any[];
   handleFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handlePriceRangeChange: (isChecked: boolean, option: any) => void;
+  handlePriceRangeChange: (isChecked: boolean, option: PriceOption) => void;
 }) => {
   return (
     <div className="">
@@ -16,7 +17,7 @@ export const ProductFilter = ({
           <div className="mb-6 last:mb-0" key={attribute.name}>
             <div className="font-semibold mb-2">{attribute.displayName}</div>
             <div className="flex flex-col">
-              {attribute.options.map((option: any) => {
+              {attribute.options.map((option: PriceOption) => {
                 if (attribute.filterType === "range") {
                   return (
                     <Checkbox

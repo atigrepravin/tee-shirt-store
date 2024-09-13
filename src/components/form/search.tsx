@@ -1,6 +1,11 @@
 import { SearchIcon } from "../icons/search";
 
-export const Search = ({ onChange, value }: any) => {
+interface SearchProps {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+}
+
+export const Search = ({ onChange, value }: SearchProps) => {
   return (
     <div className="relative w-full">
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

@@ -1,6 +1,6 @@
 import MinusIcon from "../icons/minus";
 import PlusIcon from "../icons/plus";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../hooks/use-cart";
 
 export const QuantitySelector = ({
   productId,

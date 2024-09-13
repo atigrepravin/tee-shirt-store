@@ -1,5 +1,5 @@
 import { Product } from "../../types";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../hooks/use-cart";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const { cart, handleAddToCart } = useCart();

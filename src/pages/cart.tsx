@@ -1,5 +1,5 @@
 import { CartItemCard } from "../components/cart/cart-item-card";
-import { useCart } from "../components/hooks/useCart";
+import { useCart } from "../components/hooks/use-cart";
 import { CartItem } from "../types";
 
 const Cart = () => {

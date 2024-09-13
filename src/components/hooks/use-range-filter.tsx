@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
+import { AttributeOption, Product } from "../../types";
 
-function useRangeFilter(selectedPriceRanges: any, data: any[]): any[] {
+function useRangeFilter(
+  selectedPriceRanges: AttributeOption[],
+  data: Product[]
+) {
   const [result, setResult] = useState<any[]>(data);
 
   useEffect(() => {
     if (selectedPriceRanges.length) {
-      const filteredData = data.filter((item: any) => {
-        return selectedPriceRanges.some((range: any) => {
-          const price = item.price;
-          return price >= range.min && price <= range.max;
+      const filteredData = data.filter((item) => {
+        return selectedPriceRanges.some((range) => {
+          if (range.min && range.max) {
+            const price = item.price;
+            return price >= range.min && price <= range.max;
+          }
         });
       });
       setResult(filteredData);

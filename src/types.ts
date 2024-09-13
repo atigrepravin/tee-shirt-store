@@ -50,8 +50,16 @@ export interface FilterFormData {
   price: string[];
 }
 
-export interface PriceOption {
+export interface AttributeOption {
   label: string;
-  min: number;
-  max: number;
+  value: string;
+  min?: number;
+  max?: number;
+}
+
+export interface ProductFilterAtributes {
+  name: string;
+  displayName: string;
+  options: Array<AttributeOption>;
+  filterType?: string;
 }

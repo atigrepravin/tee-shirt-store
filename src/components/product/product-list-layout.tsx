@@ -9,7 +9,7 @@ import {
 } from "../../utils/product";
 import useFilter from "../hooks/use-filter";
 import useRangeFilter from "../hooks/use-range-filter";
-import { PriceOption, Product } from "../../types";
+import { AttributeOption, Product, ProductFilterAtributes } from "../../types";
 import useSearch from "../hooks/use-search";
 import { FilterIcon } from "../icons/filter";
 import cn from "classnames";
@@ -61,7 +61,10 @@ export const ProudctListLayout = () => {
     setFilterFormData({ ...filterFormData, [key]: attributeValues });
   };
 
-  const handlePriceRangeChange = (isChecked: boolean, option: PriceOption) => {
+  const handlePriceRangeChange = (
+    isChecked: boolean,
+    option: AttributeOption
+  ) => {
     let newSelectedPriceRanges;
     if (isChecked) {
       newSelectedPriceRanges = [...selectedPriceRanges, option];
@@ -92,7 +95,9 @@ export const ProudctListLayout = () => {
         <ProductFilter
           handleFilterChange={handleFilterChange}
           handlePriceRangeChange={handlePriceRangeChange}
-          filterAttributes={PRODUCT_FILTER_ATTRIBUTES}
+          filterAttributes={
+            PRODUCT_FILTER_ATTRIBUTES as ProductFilterAtributes[]
+          }
         />
       </div>
       <div className="grow">

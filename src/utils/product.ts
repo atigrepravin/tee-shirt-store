@@ -8,6 +8,7 @@ export const PRODUCT_FILTER_ATTRIBUTES = [
       { label: "Red", value: "red" },
       { label: "Black", value: "black" },
       { label: "Green", value: "green" },
+      { label: "Blue", value: "blue" },
     ],
   },
   {

@@ -1,4 +1,4 @@
-import { PriceOption } from "../../types";
+import { AttributeOption, ProductFilterAtributes } from "../../types";
 import { Checkbox } from "../form/checkbox";
 
 export const ProductFilter = ({
@@ -6,9 +6,9 @@ export const ProductFilter = ({
   handleFilterChange,
   handlePriceRangeChange,
 }: {
-  filterAttributes: any[];
+  filterAttributes: ProductFilterAtributes[];
   handleFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handlePriceRangeChange: (isChecked: boolean, option: PriceOption) => void;
+  handlePriceRangeChange: (isChecked: boolean, option: AttributeOption) => void;
 }) => {
   return (
     <div className="">
@@ -17,7 +17,7 @@ export const ProductFilter = ({
           <div className="mb-6 last:mb-0" key={attribute.name}>
             <div className="font-semibold mb-2">{attribute.displayName}</div>
             <div className="flex flex-col">
-              {attribute.options.map((option: PriceOption) => {
+              {attribute.options.map((option: AttributeOption) => {
                 if (attribute.filterType === "range") {
                   return (
                     <Checkbox

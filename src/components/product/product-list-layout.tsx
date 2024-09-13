@@ -11,6 +11,8 @@ import useFilter from "../hooks/use-filter";
 import useRangeFilter from "../hooks/use-range-filter";
 import { PriceOption, Product } from "../../types";
 import useSearch from "../hooks/use-search";
+import { FilterIcon } from "../icons/filter";
+import cn from "classnames";
 
 export const ProudctListLayout = () => {
   const [products, setProducts] = useState<Product[] | []>([]);
@@ -19,7 +21,7 @@ export const ProudctListLayout = () => {
     PRODUCT_FILTER_DEFAULT_FORM_VALUE
   );
   const [selectedPriceRanges, setSelectedPriceRanges] = useState<any[]>([]);
-  console.log("test------selectedPriceRanges", selectedPriceRanges);
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
   const searchParams = ["name", "type", "color"];
   const searchedProducts = useSearch(searchQuery, searchParams, products);
   const filteredProductsBylabel = useFilter(filterFormData, searchedProducts);
@@ -35,6 +37,14 @@ export const ProudctListLayout = () => {
     };
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (isFilterVisible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isFilterVisible]);
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const key = e.target.dataset.groupName;
@@ -65,7 +75,20 @@ export const ProudctListLayout = () => {
 
   return (
     <div className="flex gap-8">
-      <div className="w-80 mt-20">
+      <div
+        className={cn(
+          "md:w-60 z-50 bg-white md:z-auto md:mt-20 w-full h-full md:h-auto transition-transform left-0 top-0 -translate-x-full md:translate-x-0 overflow-auto fixed md:static p-8 md:p-0",
+          {
+            "translate-x-0": isFilterVisible,
+          }
+        )}
+      >
+        <button
+          className="md:hidden absolute right-2 top-2 py-4 px-6 bg-gray-200 hover:bg-gray-300"
+          onClick={() => setIsFilterVisible(false)}
+        >
+          Close
+        </button>
         <ProductFilter
           handleFilterChange={handleFilterChange}
           handlePriceRangeChange={handlePriceRangeChange}
@@ -73,13 +96,18 @@ export const ProudctListLayout = () => {
         />
       </div>
       <div className="grow">
-        <div className="max-w-lg mx-auto mb-6">
+        <div className="max-w-lg mx-auto mb-6 flex items-center">
           <Search
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setSearchQuery(e.target.value)
             }
             value={searchQuery}
           />
+          <div className="ml-6 md:hidden">
+            <button onClick={() => setIsFilterVisible(true)}>
+              <FilterIcon />
+            </button>
+          </div>
         </div>
         <ProductList products={filteredProducts} />
       </div>

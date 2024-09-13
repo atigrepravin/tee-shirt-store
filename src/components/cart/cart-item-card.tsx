@@ -10,7 +10,7 @@ export const CartItemCard = ({
 }) => {
   const remaningStock = cartItem.stock - cartItem.quantity;
   return (
-    <div className="border-b first:border-t justify-between flex p-6 gap-6">
+    <div className="border-b first:border-t md:justify-between flex-col md:flex-row flex py-6 md:p-6 gap-2 md:gap-6">
       <div className="flex">
         <a href="#" className="h-24">
           <img
@@ -31,17 +31,17 @@ export const CartItemCard = ({
           <div className="text-base font-semibold my-2">₹ {cartItem.price}</div>
         </div>
       </div>
-      <div className="flex flex-wrap content-center mx-8">
+      <div className="flex flex-wrap content-center justify-center mx-8">
         <QuantitySelector
           productId={cartItem.id}
           cartItemQuantity={cartItem.quantity}
           remaningStock={remaningStock}
         />
       </div>
-      <div className="flex content-center flex-wrap">
+      <div className="flex content-center justify-center flex-wrap">
         <button
           onClick={() => handleRemoveFromCart(cartItem.id)}
-          className="items-center bg-gray-100 hover:bg-gray-200 border border-gray-300 h-10 px-6 py-2 rounded-lg  focus:outline-none"
+          className="items-center w-full leading-tight md:w-auto bg-gray-100 hover:bg-gray-200 border border-gray-300 h-10 px-6 py-2 rounded-lg  focus:outline-none"
         >
           Remove
         </button>

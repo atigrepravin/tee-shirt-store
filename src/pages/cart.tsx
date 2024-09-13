@@ -14,8 +14,8 @@ const Cart = () => {
 
   return (
     <>
-      <h2 className="text-2xl font-semibold mb-8">Shopping Cart</h2>
-      <div className="flex gap-20">
+      <h2 className="text-xl md:text-2xl font-semibold mb-8">Shopping Cart</h2>
+      <div className="flex flex-col md:flex-row md:gap-20">
         <div className="grow">
           {!!cart.items &&
             cart.items.map((cartItem: CartItem) => (
@@ -26,7 +26,7 @@ const Cart = () => {
               />
             ))}
         </div>
-        <div className="w-80 border p-8 top-32">
+        <div className="md:w-80 md:border p-8 ">
           <h3 className="text-lg font-semibold m-1">Order Summary</h3>
           <div className="flex justify-between my-3">
             <div>Items:</div>

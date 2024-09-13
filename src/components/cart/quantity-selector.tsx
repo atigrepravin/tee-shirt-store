@@ -50,7 +50,9 @@ export const QuantitySelector = ({
           <PlusIcon className="w-4 h-4" />
         </button>
       </div>
-      <div className="flex text-sm mt-3">In Stock: {remaningStock}</div>
+      <div className="text-sm mt-3 text-center md:text-left">
+        In Stock: {remaningStock}
+      </div>
     </div>
   );
 };
